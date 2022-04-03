@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://energycode.pnl.gov/ns/ComCheckBuildingSchema" xmlns="http://www.w3.org/2001/XMLSchema">
+	<element name="building">
+		<complexType>
+			<sequence>
+				<element name="projectType" type="string" />
+				<element name="bldgUseType" type="string" />
+				<element name="feetBldgHeight" type="decimal" />
+				<element name="isNonresidentialConditioning" type="boolean" />
+				<element name="isResidentialConditioning" type="boolean" />
+				<element name="isSemiheatedConditioning" type="boolean" />
+				<element name="conditioning" type="string" />
+				<element name="control">
+					<complexType>
+						<sequence>
+							<element name="code" type="string" />
+							<element name="complianceMode" type="string" />
+							<element name="version" type="string" />
+						</sequence>
+					</complexType>
+				</element>
+				<element name="location">
+					<complexType>
+						<sequence>
+							<element name="state" type="string" />
+							<element name="city" type="string" />
+						</sequence>
+					</complexType>
+				</element>
+				<element name="project">
+					<complexType>
+						<sequence>
+							<element name="projectTitle" type="string" />
+							<element name="projectAddress" type="string" />
+							<element name="projectCity" type="string" />
+							<element name="projectState" type="string" />
+							<element name="projectZipCode" type="string" />
+							<element name="developerCompany" type="string" />
+							<element name="developerAddress" type="string" />
+							<element name="developerCity" type="string" />
+							<element name="developerState" type="string" />
+							<element name="developerZipCode" type="string" />
+							<element name="projectComplete" type="boolean" />
+						</sequence>
+					</complexType>
+				</element>
+				<element name="envelope">
+					<complexType>
+						<sequence>
+							<element name="postAltWindowWallPct" type="decimal" />
+							<element name="postAltSkylightRoofPct" type="decimal" />
+							<element name="altPctGlazingAreaReplaced" type="decimal" />
+							<element name="altPctSkylightAreaReplaced" type="decimal" />
+							<element name="useOrientDetails" type="boolean" />
+							<element name="useVltDetails" type="boolean" />
+							<element name="useCoolRoofPerformanceDetails" type="boolean" />
+							<element name="airBarrierComplianceType" type="string" />
+							<element name="applyWindowPctAllowanceForDaylighting" type="boolean" />
+							<element name="applySkylightPctAllowanceForDaylighting" type="boolean" />
+						</sequence>
+					</complexType>
+				</element>
+				<element name="lighting">
+					<complexType>
+						<sequence>
+							<element name="exteriorLightingZone" type="unsignedByte" />
+							<element name="exteriorLightingZoneType" type="string" />
+							<element name="wholeBldgUses">
+								<complexType>
+									<sequence>
+										<element name="wholeBldgUse">
+											<complexType>
+												<sequence>
+													<element name="wholeBldgType" type="string" />
+													<element name="key" type="unsignedInt" />
+													<element name="powerDensity" type="decimal" />
+													<element name="internalLoad" type="decimal" />
+													<element name="ceilingHeight" type="unsignedByte" />
+													<element name="listPosition" type="unsignedByte" />
+													<element name="constructionType" type="string" />
+													<element name="floorArea" type="unsignedShort" />
+													<element name="interiorLightingSpace">
+														<complexType>
+															<sequence>
+																<element name="description" type="string" />
+																<element name="altExemptType" type="string" />
+																<element name="preAltNumberFixtures" type="unsignedByte" />
+																<element name="numFixturesAlteredOrAdded" type="unsignedByte" />
+																<element name="preAltTotalWattage" type="decimal" />
+																<element name="postAltTotalWattage" type="decimal" />
+																<element name="allowanceType" type="string" />
+																<element name="allowanceFloorArea" type="unsignedByte" />
+																<element name="rcrPerimeter" type="unsignedByte" />
+																<element name="rcrFloorToWorkplaneHeight" type="unsignedByte" />
+																<element name="rcrWorkplaneToLuminaireHeight" type="unsignedByte" />
+																<element name="fixtures">
+																	<complexType>
+																		<sequence>
+																			<element maxOccurs="unbounded" name="fixture">
+																				<complexType>
+																					<sequence>
+																						<element name="listPosition" type="unsignedByte" />
+																						<element name="lampWattage" type="decimal" />
+																						<element name="lightingType" type="string" />
+																						<element name="typeOfFixture" type="string" />
+																						<element name="fixtureType" type="string" />
+																						<element name="lampType" type="string" />
+																						<element name="numberOfLamps" type="unsignedByte" />
+																						<element name="fixtureWattage" type="decimal" />
+																						<element name="quantity" type="unsignedByte" />
+																					</sequence>
+																				</complexType>
+																			</element>
+																		</sequence>
+																	</complexType>
+																</element>
+															</sequence>
+														</complexType>
+													</element>
+												</sequence>
+											</complexType>
+										</element>
+									</sequence>
+								</complexType>
+							</element>
+							<element name="activityUses">
+								<complexType>
+									<sequence>
+										<element name="activityUse">
+											<complexType>
+												<sequence>
+													<element name="key" type="unsignedInt" />
+													<element name="activityType" type="string" />
+													<element name="powerDensity" type="unsignedByte" />
+													<element name="ceilingHeight" type="unsignedByte" />
+													<element name="internalLoad" type="unsignedByte" />
+													<element name="listPosition" type="unsignedByte" />
+													<element name="constructionType" type="string" />
+													<element name="floorArea" type="unsignedByte" />
+												</sequence>
+											</complexType>
+										</element>
+									</sequence>
+								</complexType>
+							</element>
+							<element name="exteriorUses">
+								<complexType>
+									<sequence>
+										<element name="exteriorUse">
+											<complexType>
+												<sequence>
+													<element name="key" type="unsignedInt" />
+													<element name="exteriorType" type="string" />
+													<element name="powerDensity" type="unsignedByte" />
+													<element name="useQuantity" type="unsignedByte" />
+													<element name="isTradable" type="boolean" />
+												</sequence>
+											</complexType>
+										</element>
+									</sequence>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+				<element name="hvac">
+					<complexType>
+						<sequence>
+							<element name="hvacSystems">
+								<complexType>
+									<sequence>
+										<element name="hvacSystem">
+											<complexType>
+												<sequence>
+													<element name="description" type="string" />
+													<element name="quantity" type="unsignedByte" />
+													<element name="altExemptType" type="string" />
+													<element name="listPosition" type="unsignedByte" />
+													<element name="descriptionHeatEquip" type="string" />
+													<element name="descriptionCoolEquip" type="string" />
+													<element name="heatingEquipment" type="string" />
+													<element name="coolingEquipment" type="string" />
+													<element name="heatPump" type="string" />
+													<element name="quantityHeatEquip" type="unsignedByte" />
+													<element name="quantityCoolEquip" type="unsignedByte" />
+													<element name="zone" type="string" />
+													<element name="perimeterSystem" type="boolean" />
+													<element name="isHeatingSysWeatherized" type="boolean" />
+													<element name="heatingEquipCapacity" type="decimal" />
+													<element name="propHeatingEquipEfficiency" type="decimal" />
+													<element name="coolingEquipCapacity" type="decimal" />
+													<element name="propCoolingEquipEfficiency" type="decimal" />
+													<element name="fuel" type="string" />
+													<element name="distribution" type="string" />
+													<element name="varAirBox" type="boolean" />
+													<element name="fanPoweredVav" type="boolean" />
+													<element name="varAirVolMixingBox" type="boolean" />
+													<element name="constVolMixingBox" type="boolean" />
+													<element name="reheatRecoolCoil" type="boolean" />
+													<element name="electricReheat" type="boolean" />
+													<element name="hydronicReheat" type="boolean" />
+													<element name="steamReheat" type="boolean" />
+													<element name="condenser" type="string" />
+													<element name="economizer" type="string" />
+													<element name="economizerException" type="string" />
+													<element name="fanControl" type="string" />
+													<element name="supplyFanHp" type="decimal" />
+													<element name="supplyStaticPressure" type="decimal" />
+													<element name="returnFanHp" type="decimal" />
+													<element name="fanSystemKey" type="unsignedInt" />
+													<element name="totalFanHp" type="decimal" />
+													<element name="requirements">
+														<complexType>
+															<sequence>
+																<element maxOccurs="unbounded" name="requirementAnswer">
+																	<complexType>
+																		<sequence>
+																			<element name="requirement" type="string" />
+																			<element name="category" type="string" />
+																			<element name="exceptionName" type="string" />
+																			<element name="status" type="string" />
+																		</sequence>
+																	</complexType>
+																</element>
+															</sequence>
+														</complexType>
+													</element>
+												</sequence>
+											</complexType>
+										</element>
+									</sequence>
+								</complexType>
+							</element>
+							<element name="fanSystems">
+								<complexType>
+									<sequence>
+										<element name="fanSystem">
+											<complexType>
+												<sequence>
+													<element name="key" type="unsignedInt" />
+													<element name="description" type="string" />
+													<element name="listPosition" type="unsignedByte" />
+													<element name="servesAllowanceAreaWithFlowControl" type="boolean" />
+													<element name="hasPressureDropCredits" type="boolean" />
+													<element name="complyMethod" type="string" />
+													<element name="fans">
+														<complexType>
+															<sequence>
+																<element name="fan">
+																	<complexType>
+																		<sequence>
+																			<element name="description" type="string" />
+																			<element name="listPosition" type="unsignedByte" />
+																			<element name="nameplateHp" type="decimal" />
+																			<element name="brakeHp" type="decimal" />
+																			<element name="designBrakeHp" type="decimal" />
+																			<element name="volume" type="decimal" />
+																			<element name="fanEfficiency" type="decimal" />
+																			<element name="totalFanEfficiency" type="decimal" />
+																			<element name="fanDesignEfficiency" type="decimal" />
+																			<element name="fanEfficiencyExceptionType" type="string" />
+																			<element name="fanType" type="string" />
+																			<element name="fanVolumeType" type="string" />
+																		</sequence>
+																	</complexType>
+																</element>
+															</sequence>
+														</complexType>
+													</element>
+												</sequence>
+											</complexType>
+										</element>
+									</sequence>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+				<element name="requirements">
+					<complexType>
+						<sequence>
+							<element maxOccurs="unbounded" name="requirementAnswer">
+								<complexType>
+									<sequence>
+										<element name="requirement" type="string" />
+										<element name="category" type="string" />
+										<element minOccurs="0" name="exceptionName" type="string" />
+										<element name="status" type="string" />
+									</sequence>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>
