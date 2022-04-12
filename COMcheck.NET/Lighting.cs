@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
@@ -16,8 +11,8 @@ namespace COMcheck
         [XmlElement(Order = 1)]
         public ExteriorLightingZoneType exteriorLightingZoneType { get; set; } = ExteriorLightingZoneType.EXT_ZONE_UNSPECIFIED;
         [XmlArray(Order = 2)]
-        [XmlArrayItem("wholeBuildingUse")]
-        public WholeBuildingUse[] wholeBuildingUses;
+        [XmlArrayItem("wholeBldgUse")]
+        public WholeBuildingUse[] wholeBldgUses;
     }
 
     public enum ExteriorLightingZoneType
@@ -41,13 +36,10 @@ namespace COMcheck
         public int listPosition { get; set; }
         public ConstructionType constructionType { get; set; } = ConstructionType.NON_RESIDENTIAL;
         public int floorArea { get; set; }
-        [XmlElement("interiorLightingSpace")]
         public InteriorLightingSpace interiorLightingSpace { get; set; } = new InteriorLightingSpace();
-
 
         public void WriteXml(XmlWriter writer)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(InteriorLightingSpace));
 
             writer.WriteElementString(nameof(wholeBuildingType.wholeBldgType), wholeBuildingType.wholeBldgType);
             writer.WriteElementString(nameof(wholeBuildingType.key), wholeBuildingType.key.ToString());
@@ -59,33 +51,31 @@ namespace COMcheck
             writer.WriteElementString(nameof(constructionType), constructionType.ToString());
             writer.WriteElementString(nameof(floorArea), floorArea.ToString());
 
-            serializer.Serialize(writer, interiorLightingSpace);
+            new XmlSerializer(typeof(InteriorLightingSpace)).Serialize(writer, interiorLightingSpace);
         }
 
         public void ReadXml(XmlReader reader){}
-
-        public XmlSchema GetSchema()
-        {
-            return null;
-        }
+        public XmlSchema GetSchema(){ return null;}
     }
 
     public static class WholeBuildingTypes
     {
-        public readonly static WholeBuildingType Automotive = new WholeBuildingType("WHOLE_BUILDING_AUTOMOTIVE", 133811997, 0.71, 0.75);
+        public readonly static WholeBuildingType Automotive = new WholeBuildingType("Automotive Facility", "WHOLE_BUILDING_AUTOMOTIVE", 133811997, 0.71, 0.75);
 
     }
 
     public class WholeBuildingType
     {
-        public WholeBuildingType(string wbt, int k, double pd, double il)
+        public WholeBuildingType(string d, string wbt, int k, double pd, double il)
         {
+            description = d;
             wholeBldgType = wbt;
             key = k;
             powerDensity = pd;
             internalLoad = il;
 
         }
+        public string description { get; }
         public string wholeBldgType { get; }
         public int key { get; }
         public double powerDensity { get; }
@@ -98,6 +88,7 @@ namespace COMcheck
         RESIDENTIAL
     }
 
+    [XmlRoot("interiorLightingSpace")]
     public class InteriorLightingSpace
     {
         public XmlCDataSection description { get; set; }
@@ -129,19 +120,22 @@ namespace COMcheck
         public int listPosition { get; set; }
         public double lampWattage { get; set; }
         public LightingType lightingType { get; set; }
+        public XmlCDataSection typeOfFixture { get; set; }
+        public XmlCDataSection description { get; set; }
         public XmlCDataSection fixtureType { get; set; }
         public LampType lampType { get; set; }
         public Ballast ballast { get; set; }
         public int numberOfLamps { get; set; }
         public double fixtureWattage { get; set; }
 
+        
         public TrackLightingWattageBasisType trackLightingWattageBasisType { get; set; }
         public double trackTotalLuminaireWattage { get; set; }
         public double trackLength { get; set; }
         public int trackCircuitBreakerAmps { get; set; }
         public int trackCircuitBreakerVolts { get; set; }
-        public int trackCurrentLimiterWattage { get; set; }
-        public int trackTransformerWattage { get; set; }
+        public int? trackCurrentLimiterWattage { get; set; }
+        public int? trackTransformerWattage { get; set; }
         public int quantity { get; set; }
          
     }

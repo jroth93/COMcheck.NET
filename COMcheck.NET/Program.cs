@@ -48,10 +48,7 @@ namespace COMcheck
                 quantity = 2
             };
 
-            InteriorLightingSpace ils = new InteriorLightingSpace()
-            {
-                fixtures = new Fixture[] {f1}
-            };
+            
 
             WholeBuildingUse wbu = new WholeBuildingUse()
             {
@@ -60,13 +57,20 @@ namespace COMcheck
                 listPosition = 0,
                 constructionType = ConstructionType.NON_RESIDENTIAL,
                 floorArea = 50000,
-                interiorLightingSpace = ils
 
             };
 
+            InteriorLightingSpace ils = new InteriorLightingSpace()
+            {
+                description = CData($"{wbu.wholeBuildingType.description} ({wbu.floorArea} sq. ft.)"),
+                fixtures = new Fixture[] { f1 }
+            };
+
+            wbu.interiorLightingSpace = ils;
+
             Lighting light = new Lighting()
             {
-                wholeBuildingUses = new WholeBuildingUse[]{ wbu },
+                wholeBldgUses = new WholeBuildingUse[]{ wbu },
                 
             };
 
@@ -77,7 +81,7 @@ namespace COMcheck
             Building bldg = new Building()
             {
                 projectType = ProjectType.NEW_CONSTRUCTION,
-                buildingUseType = BuildingUseType.WHOLE_BUILDING,
+                bldgUseType = BuildingUseType.WHOLE_BUILDING,
                 feetBldgHeight = 10.0,
                 isNonresidentialConditioning = true,
                 isResidentialConditioning = false,
@@ -101,8 +105,7 @@ namespace COMcheck
 
         static XmlCDataSection CData(string s)
         {
-            XmlDocument doc = new XmlDocument();
-            return doc.CreateCDataSection(s);
+            return new XmlDocument().CreateCDataSection(s);
         }
     }
 }

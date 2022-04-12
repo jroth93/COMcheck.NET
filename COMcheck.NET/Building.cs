@@ -17,7 +17,7 @@ namespace COMcheck
         [XmlElement(Order = 0)]
         public ProjectType projectType { get; set; } = ProjectType.NEW_CONSTRUCTION;
         [XmlElement(Order = 1)]
-        public BuildingUseType buildingUseType { get; set; } = BuildingUseType.WHOLE_BUILDING;
+        public BuildingUseType bldgUseType { get; set; } = BuildingUseType.WHOLE_BUILDING;
         [XmlElement(Order = 2)]
         public double feetBldgHeight { get; set; } = 10.0;
         [XmlElement(Order = 3)]
@@ -82,7 +82,21 @@ namespace COMcheck
         CEZ_IECC2009,
         CEZ_IECC2012,
         CEZ_IECC2015,
-        CEZ_IECC2018
+        CEZ_IECC2018,
+
+        CEZ_CO_BOULDER,
+        CEZ_CO_DENVER,
+        CEZ_CO_DENVER_90_1_2016,
+        CEZ_NEWYORKCITY,
+        CEZ_NYSTRETCH_NYC_IECC2018,
+        CEZ_NYSTRETCH_NYC_90_1_2016,
+        CEZ_NYSTRETCH_NYC_90_1_11_G,
+        CEZ_NYSTRETCH_IECC2018,
+        CEZ_NYSTRETCH_90_1_2016,
+        CEZ_NYSTRETCH_90_1_11_G,
+        CEZ_ONTARIO,
+        CEZ_PUERTO_RICO,
+        CEZ_VT
     }
 
     public enum ComplianceMode

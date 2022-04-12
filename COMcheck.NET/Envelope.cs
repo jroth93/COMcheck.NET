@@ -8,10 +8,10 @@ namespace COMcheck
 {
     public class Envelope
     {
-        public double postAltWindowWallPct { get; set; } = 0.0;
-        public double postAltSkylightRoofPct { get; set; } = 0.0;
-        public double altPctGlazingAreaReplaced { get; set; } = 0.0;
-        public double altGlazingAreaReplaced { get; set; } = 0.0;
+        public double postAltWindowWallPct { get; set; }
+        public double postAltSkylightRoofPct { get; set; }
+        public double altPctGlazingAreaReplaced { get; set; }
+        public double altPctSkylightAreaReplaced { get; set; }
         public bool useOrientDetails { get; set; } = true;
         public bool useVltDetails { get; set; } = false;
         public bool useCoolRoofPerformanceDetails { get; set; } = false;
